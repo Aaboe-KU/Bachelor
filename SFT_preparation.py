@@ -12,6 +12,15 @@ file = open(file_name, "r")
 ASCII = json5.load(file)
 file.close()
 
+# Setting up argument parser
+parser = argparse.ArgumentParser()
+
+parser.add_argument('--min_sft', type=int, help="Specify the smallest SFT")
+parser.add_argument('--max_sft', type=int, help="Specify the largest SFT")
+parser.add_argument('--F0', type=float, help="Specify the synthetic signal frequency")
+parser.add_argument('--h0', type=float, help="Specify the synthetic signal amplitude")
+
+args = parser.parse_args()
 
 def compute_sfts(detector: str = 'H1', min_sft: int = 0, max_sft: int = 5, inject_signal: bool = False,
                  sqrtSX: float = 0.0, F0: float = 150.10, F1: float = -1e-9, Alpha: float = 0.0,
